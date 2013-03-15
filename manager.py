@@ -5,8 +5,8 @@ from filesystem import Folder
 
 app = Flask(__name__)
 app.config.update(
-    DEBUG=True,
-    FILES_ROOT=os.path.dirname(os.path.abspath(__file__))
+    DEBUG=False,
+    FILES_ROOT=os.path.dirname(os.path.abspath(__file__)),
 )
 
 @app.route('/')
