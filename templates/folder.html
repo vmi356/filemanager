@@ -1,0 +1,38 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="span12">
+            <h1 class="page-header">{{ folder.name }}</h1>
+        </div>
+    </div>
+    {% if folder.chunks %}
+    <ul class="breadcrumb">
+        {% for chunk in folder.chunks() %}
+            <li>
+                <a href="/files/{{ chunk.path }}">{{ chunk.chunk }}</a>
+                <span class="divider">/</span>
+            </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="row">
+        <div class="span6">
+            <h3 class="page-header">Folders:</h3>
+            <ul class="nav nav-tabs nav-stacked">
+            {% for folder in folder.folders %}
+                <li><a href="/files/{{ folder.path }}">{{ folder.name }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+        <div class="span6">
+            <h3 class="page-header">Files:</h3>
+            <ul class="nav nav-tabs nav-stacked">
+            {% for file in folder.files %}
+                <li><a href="/files/{{ file.path }}">{{ file.name }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+{% endblock %}
