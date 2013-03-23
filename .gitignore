@@ -1,5 +1,6 @@
 *.pyc
 .installed.cfg
+.idea
 bin/*
 develop-eggs/*
 eggs/*
