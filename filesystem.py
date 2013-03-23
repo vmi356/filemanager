@@ -3,11 +3,13 @@ from genericpath import isfile
 import os
 from os.path import join, basename, splitext, isdir
 from action import View
+import string
 
 
 class Node(object):
     def __init__(self, root, path):
-        self.path = path
+        splitetPath = string.split(path,"/")
+        self.path = "\\".join(splitetPath)
         self.root = root
         self._basename = basename(self.path)
 
@@ -49,6 +51,7 @@ class Folder(Node):
         chunk_path = ''
         for chunk in self.path.split(os.sep):
             chunk_path = join(chunk_path, chunk)
+
             yield {'chunk': chunk, 'path': chunk_path}
 
 
