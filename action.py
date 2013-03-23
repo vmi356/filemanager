@@ -12,3 +12,12 @@ class View(Action):
     def apply(self):
         text = open(join(self.root, self.path)).read()
         return { 'text':text }
+
+class Search(Action):
+    def apply(self, folder_to_search_into, mask):
+        founds = []
+        for root, dirs, files in os.walk(folder_to_search_into, topdown=False):
+            for name in files:
+                if mask in name:
+                    founds.append(os.path.join(root, name))
+        return founds
