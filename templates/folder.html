@@ -21,7 +21,7 @@
             <h3 class="page-header">Folders:</h3>
             <ul class="nav nav-tabs nav-stacked">
             {% for folder in folder.folders %}
-                <li><a href="/files/{{ folder.path }}">{{ folder.name }}</a></li>
+                <li><a href="/files/{{ folder.path }}"> <img src="../static/img/folder.png" width="20" alt="icon"> {{ folder.name }}</a></li>
             {% endfor %}
             </ul>
         </div>
@@ -29,7 +29,7 @@
             <h3 class="page-header">Files:</h3>
             <ul class="nav nav-tabs nav-stacked">
             {% for file in folder.files %}
-                <li><a href="/files/{{ file.path }}">{{ file.name }}</a></li>
+                <li><a href="/files/{{ file.path }}"> <img src="../static/img/{{ file.extension }}.png" width="20" alt="icon"> {{ file.name }}</a></li>
             {% endfor %}
             </ul>
         </div>
