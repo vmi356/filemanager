@@ -19,7 +19,7 @@ class Node(object):
 
     def apply_action(self, action_class):
         action = action_class(self)
-        action.apply()
+        return action.apply()
 
 class File(Node):
     avaliable_actions = [View, ]
