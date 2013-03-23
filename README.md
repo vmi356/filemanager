@@ -19,3 +19,4 @@ Run
 bin/flask manager.py
 
 A note: project can't start in Debug mode from console, set ``app.debug=False`` to start project from console.
+
