@@ -35,7 +35,7 @@ class File(Node):
         return self._basename
 
     def get_path(self):
-        return dirname(self.path)
+        return dirname(join(self.root, self.path))
 
 class Folder(Node):
     
