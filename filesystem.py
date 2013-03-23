@@ -9,7 +9,7 @@ import string
 class Node(object):
     def __init__(self, root, path):
         splitetPath = string.split(path,"/")
-        self.path = "\\".join(splitetPath)
+        self.path = os.path.sep.join(splitetPath)
         self.root = root
         self._basename = basename(self.path)
 

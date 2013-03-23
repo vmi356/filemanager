@@ -2,10 +2,11 @@
 import os
 from flask import Flask, render_template
 from filesystem import Folder, File
+from action import *
 
 app = Flask(__name__)
 app.config.update(
-    DEBUG=False,
+    DEBUG=True,
     FILES_ROOT=os.path.dirname(os.path.abspath(__file__)),
 )
 
@@ -19,7 +20,10 @@ def index(path=''):
         return render_template('folder.html', folder=folder)
     else:
         my_file = File(app.config['FILES_ROOT'], path)
-        my_file.as_view()
+        context = my_file.apply_action(View)
+        # print my_file.get_path()
+        # folder = Folder(app.config['FILES_ROOT'], )
+        return render_template('file_view.html', text=context['text'], file=my_file)
 
 if __name__ == '__main__':
     app.run()
