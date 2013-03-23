@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
 from genericpath import isfile
 import os
-from os.path import join, basename, splitext, isdir
+from os.path import join, basename, splitext, isdir, dirname
 from action import View
-import string
 
 
 class Node(object):
     def __init__(self, root, path):
-        splitetPath = string.split(path,"/")
-        self.path = os.path.sep.join(splitetPath)
+        self.path = path
         self.root = root
         self._basename = basename(self.path)
 
@@ -21,7 +19,7 @@ class Node(object):
 
     def apply_action(self, action_class):
         action = action_class(self)
-        action.apply()
+        return action.apply()
 
 class File(Node):
     avaliable_actions = [View, ]
@@ -35,6 +33,9 @@ class File(Node):
     @property
     def name(self):
         return self._basename
+
+    def get_path(self):
+        return dirname(join(self.root, self.path))
 
 class Folder(Node):
     
@@ -51,7 +52,6 @@ class Folder(Node):
         chunk_path = ''
         for chunk in self.path.split(os.sep):
             chunk_path = join(chunk_path, chunk)
-
             yield {'chunk': chunk, 'path': chunk_path}
 
 
