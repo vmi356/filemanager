@@ -21,8 +21,9 @@ def index(path=''):
     else:
         my_file = File(app.config['FILES_ROOT'], path)
         context = my_file.apply_action(View)
-        print context
-        return render_template('file_view.html', text=context['text'])
+        # print my_file.get_path()
+        # folder = Folder(app.config['FILES_ROOT'], )
+        return render_template('file_view.html', text=context['text'], file=my_file)
 
 if __name__ == '__main__':
     app.run()
