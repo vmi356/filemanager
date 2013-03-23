@@ -19,6 +19,11 @@
     <div class="row">
         <div class="span6">
             <h3 class="page-header">Folders:</h3>
+	    <form action="new_directory" method="post">
+		    <input type="text" name="new_directory_name">
+		    <input type="submit" value="Create directory">
+		    <input type="hidden" value="{{folder.path}}" name="directory_root">
+	    </form> 
             <ul class="nav nav-tabs nav-stacked">
             {% for folder in folder.folders %}
                 <li><a href="/files/{{ folder.path }}">{{ folder.name }}</a></li>
