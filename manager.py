@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 from flask import Flask, render_template
-from filesystem import Folder
+from filesystem import Folder, File
 
 app = Flask(__name__)
 app.config.update(
@@ -18,7 +18,8 @@ def index(path=''):
         folder.read()
         return render_template('folder.html', folder=folder)
     else:
-        return render_template('index.html')
+        my_file = File(app.config['FILES_ROOT'], path)
+        my_file.as_view()
 
 if __name__ == '__main__':
     app.run()

@@ -2,6 +2,7 @@
 from genericpath import isfile
 import os
 from os.path import join, basename, splitext, isdir
+from action import View
 
 
 class Node(object):
@@ -13,8 +14,15 @@ class Node(object):
     def __unicode__(self):
         return self.name
 
-class File(Node):
+    def get_actions(self):
+        return self.avaliable_actions
 
+    def apply_action(self, action_class):
+        action = action_class(self)
+        action.apply()
+
+class File(Node):
+    avaliable_actions = [View, ]
     def __unicode__(self):
         return self.name
 
@@ -25,7 +33,6 @@ class File(Node):
     @property
     def name(self):
         return self._basename
-
 
 class Folder(Node):
     
