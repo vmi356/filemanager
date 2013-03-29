@@ -33,9 +33,9 @@ def create_directory(path = "/"):
     directory_root = request.form["directory_root"]
     full_path = os.path.join(directory_root, dirname)
     try:
-	    os.mkdir(full_path)
+        os.mkdir(full_path)
     except error:
-	    pass        
+        pass
     return redirect('/files/' + directory_root)
     
 
