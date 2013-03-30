@@ -22,9 +22,10 @@ def index(path=''):
     else:
         my_file = File(app.config['FILES_ROOT'], path)
         context = my_file.apply_action(View)
-        # print my_file.get_path()
-        # folder = Folder(app.config['FILES_ROOT'], )
-        return render_template('file_view.html', text=context['text'], file=my_file)
+        folder = Folder(app.config['FILES_ROOT'], my_file.get_path())
+        if context == None:
+            return render_template('file_unreadable.html', folder=folder)
+        return render_template('file_view.html', text=context['text'], file=my_file, folder=folder)
 
 @app.route('/new_directory', methods=["POST"])
 @app.route('/<path:path>/new_directory', methods=["POST"])

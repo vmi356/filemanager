@@ -10,6 +10,9 @@ class Action(object):
 class View(Action):
     """docstring for View"""
     def apply(self):
-        text = open(os.path.join(self.node.root, self.node.path)).read()
+    	try:
+        	text = unicode(open(os.path.join(self.node.root, self.node.path)).read())
+        except UnicodeDecodeError:
+        	return None
         context = { 'text' : text }
         return context
