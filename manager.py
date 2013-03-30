@@ -3,6 +3,7 @@ import os
 from flask import Flask, render_template, redirect, request
 from filesystem import Folder, File
 from action import *
+from flask import request
 from os import error
 
 app = Flask(__name__)
@@ -26,6 +27,11 @@ def index(path=''):
         if context == None:
             return render_template('file_unreadable.html', folder=folder)
         return render_template('file_view.html', text=context['text'], file=my_file, folder=folder)
+
+@app.route('/search', methods=['POST'])
+def search():
+    q = request.form['q']
+    return render_template('search.html', request = q)
 
 @app.route('/new_directory', methods=["POST"])
 @app.route('/<path:path>/new_directory', methods=["POST"])
