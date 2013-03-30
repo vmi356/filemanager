@@ -11,9 +11,8 @@ class View(Action):
     """docstring for View"""
     def apply(self):
         text = open(os.path.join(self.node.root, self.node.path)).read()
-        context = { 'text' : text }
-        return context
-        
+        return { 'text' : text }
+
 class Search(Action):
     def apply(self, folder_to_search_into, mask):
         founds = []
