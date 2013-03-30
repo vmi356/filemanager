@@ -10,8 +10,8 @@ class Action(object):
 class View(Action):
     """docstring for View"""
     def apply(self):
-        text = open(join(self.root, self.path)).read()
-        return { 'text':text }
+        text = open(os.path.join(self.node.root, self.node.path)).read()
+        return { 'text' : text }
 
 class Search(Action):
     def apply(self, folder_to_search_into, mask):

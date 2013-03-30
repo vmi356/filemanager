@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from genericpath import isfile
 import os
-from os.path import join, basename, splitext, isdir
+from os.path import join, basename, splitext, isdir, dirname
 from action import View
 
 
@@ -19,7 +19,7 @@ class Node(object):
 
     def apply_action(self, action_class):
         action = action_class(self)
-        action.apply()
+        return action.apply()
 
 class File(Node):
     avaliable_actions = [View, ]
@@ -33,6 +33,9 @@ class File(Node):
     @property
     def name(self):
         return self._basename
+
+    def get_path(self):
+        return dirname(join(self.root, self.path))
 
 class Folder(Node):
     
