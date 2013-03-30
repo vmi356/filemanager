@@ -3,11 +3,13 @@ from genericpath import isfile
 import os
 from os.path import join, basename, splitext, isdir, dirname
 from action import View
+import string
 
 
 class Node(object):
     def __init__(self, root, path):
-        self.path = path
+        splitetPath = string.split(path,"/")
+        self.path = os.path.sep.join(splitetPath)
         self.root = root
         self._basename = basename(self.path)
 
