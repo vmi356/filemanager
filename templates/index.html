@@ -31,9 +31,13 @@
                 <div class="container">
                     <a class="brand" href="/">Simple file manager</a>
                     <div class="nav-collapse collapse">
-{#                        <ul class="nav">#}
-{#                            <li class="active"><a href="/">Home</a></li>#}
-{#                        </ul>#}
+                       <ul class="nav pull-right">
+                            <li>
+                                <form class="navbar-search pull-left" action="/search" method="POST">
+                                    <input class="search-query span2" type="text" placeholder="Search" name="q">
+                                </form>
+                            </li>
+                        </ul>
                     </div><!--/.nav-collapse -->
                 </div>
             </div>

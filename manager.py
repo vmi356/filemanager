@@ -3,6 +3,7 @@ import os
 from flask import Flask, render_template
 from filesystem import Folder, File
 from action import *
+from flask import request
 
 app = Flask(__name__)
 app.config.update(
@@ -23,6 +24,11 @@ def index(path=''):
         context = my_file.apply_action(View)
         print context
         return render_template('file_view.html', text=context['text'])
+
+@app.route('/search', methods=['POST'])
+def search():
+    q = request.form['q']
+    return render_template('search.html', request = q)
 
 if __name__ == '__main__':
     app.run()
